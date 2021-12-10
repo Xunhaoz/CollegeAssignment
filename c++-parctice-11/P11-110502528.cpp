@@ -22,6 +22,7 @@ int main(){
 
         temp_string.clear();
         is_exist.clear();
+        char_to_int.clear();
 
         for(int i=0;i<num;++i){
             cin >> temp_char;
