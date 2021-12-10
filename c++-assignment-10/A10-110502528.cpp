@@ -52,6 +52,8 @@ int main(){
                 DFS(top);
                 cout << endl;
             }
+            else
+                cout << endl;
         }
 
         else
