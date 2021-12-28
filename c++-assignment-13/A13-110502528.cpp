@@ -7,6 +7,7 @@ Course 2021-CE1003-A
 
 #include<iostream>
 #include<fstream>
+#include<bits/stdc++.h>
 using namespace std;
 
 
@@ -16,25 +17,16 @@ void my_function();
 bool check();
 
 int main(){
+    string filename = "sudo1";
+    for(int i=1;i<4;++i){
+        filename[4] = char(int('0') + i);
+        ifstream in(filename + ".txt");
+        cin.rdbuf(in.rdbuf());
+        init();
+        my_function();
+        cout << filename+":" << (check() ? "Y" : "N") << endl;
+    }
 
-    ifstream myfile;
-
-    freopen("sudo1.txt", "r", stdin);
-    init();
-    my_function();
-    cout << "sudo1:" << (check() ? "Y" : "N") << endl;
-
-
-    freopen("sudo2.txt", "r", stdin);
-    init();
-    my_function();
-    cout << "sudo2:" << (check() ? "Y" : "N") << endl;
-
-
-    freopen("sudo3.txt", "r", stdin);
-    init();
-    my_function();
-    cout << "sudo3:" << (check() ? "Y" : "N") << endl;
 
 
     return 0;
@@ -55,13 +47,22 @@ void my_function(){
         for(int j=0;j<9;j++){
             int tmp;
             cin >> tmp;
+            tmp --;
 
             is_sudo[tmp][i] = (is_sudo[tmp][i] ? false : true);
 
-            is_sudo[tmp][j+9] = (is_sudo[tmp][i] ? false : true);
+            //cout << "is_sudo[" << tmp << "][" << i << "]"<< is_sudo[tmp][i] <<endl;
+            //if(i == 13) cout << "Here" <<endl;
 
-            is_sudo[tmp][(i/3)*3+(j/3)+18] = (is_sudo[tmp][i] ? false : true);
+            is_sudo[tmp][j+9] = (is_sudo[tmp][j+9] ? false : true);
 
+            //cout << "is_sudo[" << tmp << "][" << j+9 << "]"<< is_sudo[tmp][j+9] <<endl;
+            //if(j+9 == 13) cout << "Here" <<endl;
+
+            is_sudo[tmp][(i/3)*3+(j/3)+18] = (is_sudo[tmp][(i/3)*3+(j/3)+18] ? false : true);
+
+            //cout << "is_sudo[" << tmp << "][" << (i/3)*3+(j/3)+18 << "]"<< is_sudo[tmp][(i/3)*3+(j/3)+18] <<endl;
+            //if((i/3)*3+(j/3)+18 == 13) cout << "Here" <<endl;
         }
     }
 
